@@ -1,4 +1,4 @@
-package entity;
+package bupt.tjlcast.entity;
 
 public class User {
 	private String name ;

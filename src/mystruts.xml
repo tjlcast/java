@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mystruts>
+	<package>
+		<action name="login" class="bupt.tjlcast.framework.action.LoginAction" method="login">
+			<result name="success" type="redirect">/index.jsp</result>
+			<result name="loginFaild">/login.jsp</result>
+		</action>
+		
+		<action name="register" class="bupt.tjlcast.framework.action.RegisterAction" method="register">
+			<result name="registerSuccess">/login.jsp</result>
+		</action>
+	</package>
+</mystruts>
