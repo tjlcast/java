@@ -9,8 +9,6 @@ import org.dom4j.Document;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
-
-
 /**
  * @author tangjialiang
  * 加载配置文件，封装所有的mystruts.xml
@@ -33,20 +31,17 @@ public class ActionMappingManager {
 			InputStream in = this.getClass().getResourceAsStream("/mystruts.xml") ;
 			// 2. 加载文件
 			Document doc = reader.read(in) ;
-			
 			// 3. 得到根节点
 		    Element root = doc.getRootElement() ;
 		    // 4. 得到package节点
 		    Element ele_package = root.element("package") ;
-		    
 		    // 5. 得到package节点下的所有action子节点 
 		    @SuppressWarnings("unchecked")
 			List<Element> actions = ele_package.elements("action") ;
 		    
 		    for(Element ele : actions){
 		    	ActionMapping actionMapping = new ActionMapping() ;
-		    	
-		    	actionMapping.setName(ele.attributeValue("login"));
+		    	actionMapping.setName(ele.attributeValue("name"));
 		    	actionMapping.setClassName(ele.attributeValue("class"));
 		    	actionMapping.setMethod(ele.attributeValue("method"));
 		    	
@@ -58,12 +53,13 @@ public class ActionMappingManager {
 		    		Result result = new Result() ;
 		    		result.setName(result_ele.attributeValue("name"));
 		    		if (result_ele.attributeValue("type")==null || "".equals(result_ele.attributeValue("type"))) {
+		    			// 默认为转发
 		    			result.setRedirect("dispatch");
 		    		} else {
+		    			// 设置为重定向
 		    			result.setRedirect("redirect");
 		    		}
 		    		result.setPage(result_ele.getTextTrim());
-		    		
 		    		// 设置result集合
 		    		actionMapping.getResults().put(result.getName(), result);
 		    	}
