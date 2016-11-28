@@ -1,5 +1,9 @@
 package bupt.tjlcast.entity;
 
+/**
+ * @author tangjialiang
+ * User bean
+ */
 public class User {
 	private String name ;
 	private String pwd ;
